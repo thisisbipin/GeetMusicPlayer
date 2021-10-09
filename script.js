@@ -19,7 +19,8 @@ let title = document.querySelector('#title');
 let cover = document.querySelector('#cover');
 let clientWidth = document.querySelector('.progress-container').clientWidth;
 let arcCanvas = document.getElementById("myCanvas");
-let browseHandler = document.getElementById('browse');
+let browseHandlerFolder = document.getElementById('browse-Folder');
+let browseHandlerFile = document.getElementById('browse-File');
 
 
 
@@ -120,7 +121,6 @@ function generateSongsList() {
         newname.setAttribute('onclick', 'loadSong(' + i + '); playSong();');
         list.appendChild(newname);
     }
-    browseHandler.setAttribute('onchange', 'inputchanged()');
 }
 function addsongtolist(songSRC){
     let list = document.getElementById('list');
@@ -130,16 +130,51 @@ function addsongtolist(songSRC){
     list.appendChild(newname);
 }
 
-function inputchanged() {
-    let newsong = browseHandler.files[0];
-    let ext = newsong.name.substr(newsong.name.length - 4);
-    if (ext == '.mp3' || ext == '.wav') {
-        songs.push(newsong.name.substr(0, newsong.name.length - 4));
-        let songSRC = URL.createObjectURL(newsong);
-        addsongtolist(songSRC);
-        browseHandler.files = undefined;
-    } else
-        alert('Not a song file! Please select a valid song file');
+function inputchanged(folder = false) {
+    let want_to_alert = false;
+    if (folder == true) {
+
+        // If selected from the folder
+
+        for (let i = 0; i < browseHandlerFolder.files.length; i++) {
+            let newsong = browseHandlerFolder.files[i];
+            let ext = newsong.name.substr(newsong.name.length - 4);
+            if (ext == '.mp3' || ext == '.wav') {
+                newsongname = newsong.name.substr(0, newsong.name.length - 4)
+                if (songs.find(s => s == newsongname) == undefined) {
+                    songs.push(newsongname);
+                    let songSRC = URL.createObjectURL(newsong);
+                    addsongtolist(songSRC);
+                }
+            } else
+                want_to_alert = true;
+        }
+        if (want_to_alert == true)
+            alert('You Selected some non-song files! That was not added to the list. Please select valid song files only');
+
+    } else {
+
+        // If selected from the files
+
+        for (let i = 0; i < browseHandlerFile.files.length; i++) {
+            let newsong = browseHandlerFile.files[i];
+            let ext = newsong.name.substr(newsong.name.length - 4);
+            if (ext == '.mp3' || ext == '.wav') {
+                newsongname = newsong.name.substr(0, newsong.name.length - 4)
+                if (songs.find(s => s == newsongname) == undefined) {
+                    songs.push(newsongname);
+                    let songSRC = URL.createObjectURL(newsong);
+                    addsongtolist(songSRC);
+                }
+                else
+                    alert('Song is already in the list');
+            } else
+                want_to_alert = true;
+        }
+        if (want_to_alert == true)
+            alert('You Selected some non-song files! That was not added to the list. Please select valid song files only');
+    }
+    if (songs.length > 0) { loadSong(0);}
 }
 
 
@@ -175,27 +210,32 @@ let body = document.getElementById("body");
 let css = `background-image: url(\"${imageloc}\") ; height:${window.innerHeight}px; width: ${window.innerWidth}px;`;
 document.body.setAttribute("style", css );
 
+browseHandlerFile.setAttribute('onchange', 'inputchanged()');
+browseHandlerFolder.setAttribute('onchange', 'inputchanged(true)');
 
 
 // # TODO server Mode
 // const serverID = './';
-fetch(serverID+'lists.txt')
-    .then(response => response.text())
-    .then(text => {
-        // console.log(text);
-        let namer = '';
-        for (let i = 0; i < text.length; i++) {
-            if (text[i] == '\n') {
-                // console.log(namer);
-                if (namer.length >= 3)
-                    songs.push(namer);
-                namer = '';
-            }
-            namer += text[i];
-        }
-        loadSong(0);
-        generateSongsList();
-    })
+// fetch(serverID+'lists.txt')
+//     .then(response => response.text())
+//     .then(text => {
+//         // console.log(text);
+//         let namer = '';
+//         for (let i = 0; i < text.length; i++) {
+//             if (text[i] == '\n') {
+//                 // console.log(namer);
+//                 if (namer.length >= 3)
+//                     songs.push(namer);
+//                 namer = '';
+//             }
+//             namer += text[i];
+//         }
+//         loadSong(0);
+//         generateSongsList();
+//     })
+
+
+
 
 function loadSong(songnewIndex,url) {
     songIndex = songnewIndex;
