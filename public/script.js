@@ -177,8 +177,8 @@ document.body.setAttribute("style", css );
 
 
 
-
-const serverID = './';
+// # TODO server Mode
+// const serverID = './';
 fetch(serverID+'lists.txt')
     .then(response => response.text())
     .then(text => {
@@ -274,5 +274,10 @@ function drawArc(progressf) {
 /* --- clock --- */
 setInterval(() => {
     let today = new Date();
-    document.getElementById("clock-id").textContent = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    let time = {
+        hrs: (today.getHours()<10)?"0"+today.getHours() :today.getHours(),
+        min: (today.getMinutes()<10)?"0"+today.getMinutes() :today.getMinutes(),
+        sec: (today.getSeconds()<10)?"0"+today.getSeconds() :today.getSeconds(),
+    }
+    document.getElementById("clock-id").textContent = time.hrs + ":" + time.min + ":" + time.sec;
 }, 1000);

@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro&display=swap');
+
 
 *{
     box-sizing: border-box;
@@ -259,20 +261,24 @@ body h1{
 .clock{
     position: absolute;
     top:20px;
-    left: 73%;
+    right: 20px;
     /* right: 20px; */
-    font-family: 'Orbitron', sans-serif;
+    /* font-family: 'Orbitron', sans-serif; */
+    font-family: 'Anonymous Pro', monospace;
     font-size: 100px;
     color: white;
 }
 
+
 input[type="file"] {
     display: none;
 }
-.custom-file-upload {
+.custom-file-upload,
+.custom-folder-upload {
     border: 1px solid #ccc;
     display: inline-block;
     padding: 6px 12px;
+    margin-bottom: 12px;
     cursor: pointer;
     color: white;
     transition: 0.1s ease all;
