@@ -19,7 +19,7 @@ let title = document.querySelector('#title');
 let cover = document.querySelector('#cover');
 let clientWidth = document.querySelector('.progress-container').clientWidth;
 let arcCanvas = document.getElementById("myCanvas");
-let browseHandler = document.createElement('input');
+let browseHandler = document.getElementById('browse');
 
 
 
@@ -120,12 +120,7 @@ function generateSongsList() {
         newname.setAttribute('onclick', 'loadSong(' + i + '); playSong();');
         list.appendChild(newname);
     }
-    browseHandler.type = 'file';
-    browseHandler.id = 'browseID';
-    browseHandler.classList.add("browse-button");
     browseHandler.setAttribute('onchange', 'inputchanged()');
-    browseHandler.filename = 'file';
-    list.appendChild(browseHandler);
 }
 function addsongtolist(songSRC){
     let list = document.getElementById('list');
@@ -137,12 +132,12 @@ function addsongtolist(songSRC){
 
 function inputchanged() {
     let newsong = browseHandler.files[0];
-
     let ext = newsong.name.substr(newsong.name.length - 4);
     if (ext == '.mp3' || ext == '.wav') {
         songs.push(newsong.name.substr(0, newsong.name.length - 4));
         let songSRC = URL.createObjectURL(newsong);
         addsongtolist(songSRC);
+        browseHandler.files = undefined;
     } else
         alert('Not a song file! Please select a valid song file');
 }
