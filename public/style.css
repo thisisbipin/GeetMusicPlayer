@@ -214,7 +214,7 @@ body h1{
     height: 200px;
     width: 200px;
     background-color: rgba(112, 91, 91, 0);
-    animation: rotate 4s linear infinite;
+    animation: rotate 20s linear infinite;
     animation-play-state: paused;
     z-index: 11;
 }

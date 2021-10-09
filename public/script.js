@@ -3,12 +3,11 @@ let songs = [];
 let songsLOC = [];
 
 
-// let dir = 'file://media/bipin/Dragonite/Music/EDM';
 let dir = 'musics/'
 let songIndex = 2;
 let volume = 0.5;
 let animating = false;
-let musicContainer = document.querySelector('.music-container');
+let musicContainer = document.getElementById('music-container-ID');
 let imageContainer = document.querySelector('.img-container');
 let playBtn = document.querySelector('#play');
 let prevBtn = document.querySelector('#prev');
@@ -20,7 +19,7 @@ let title = document.querySelector('#title');
 let cover = document.querySelector('#cover');
 let clientWidth = document.querySelector('.progress-container').clientWidth;
 let arcCanvas = document.getElementById("myCanvas");
-
+let browseHandler = document.createElement('input');
 
 
 
@@ -121,8 +120,32 @@ function generateSongsList() {
         newname.setAttribute('onclick', 'loadSong(' + i + '); playSong();');
         list.appendChild(newname);
     }
+    browseHandler.type = 'file';
+    browseHandler.id = 'browseID';
+    browseHandler.classList.add("browse-button");
+    browseHandler.setAttribute('onchange', 'inputchanged()');
+    browseHandler.filename = 'file';
+    list.appendChild(browseHandler);
+}
+function addsongtolist(songSRC){
+    let list = document.getElementById('list');
+    let newname = document.createElement('li');
+    newname.textContent = songs[songs.length - 1];
+    newname.setAttribute('onclick', 'loadSong(' + (songs.length - 1) + ',url = \"'+ songSRC +'\"); playSong();');
+    list.appendChild(newname);
 }
 
+function inputchanged() {
+    let newsong = browseHandler.files[0];
+
+    let ext = newsong.name.substr(newsong.name.length - 4);
+    if (ext == '.mp3' || ext == '.wav') {
+        songs.push(newsong.name.substr(0, newsong.name.length - 4));
+        let songSRC = URL.createObjectURL(newsong);
+        addsongtolist(songSRC);
+    } else
+        alert('Not a song file! Please select a valid song file');
+}
 
 
 /* --- This function is responsible for the showing/hiding of the song menu ------ */
@@ -152,7 +175,7 @@ let imageloc = [
 ];
 
 const wallpapers = [];
-// let number = 0;/ Math.floor(Math.floor(Math.random() * (imageloc.length + 1)));
+let number = Math.floor(Math.floor(Math.random() * (imageloc.length + 1)));
 let body = document.getElementById("body");
 let css = `background-image: url(\"${imageloc}\") ; height:${window.innerHeight}px; width: ${window.innerWidth}px;`;
 document.body.setAttribute("style", css );
@@ -164,11 +187,11 @@ const serverID = './';
 fetch(serverID+'lists.txt')
     .then(response => response.text())
     .then(text => {
-        console.log(text);
+        // console.log(text);
         let namer = '';
         for (let i = 0; i < text.length; i++) {
             if (text[i] == '\n') {
-                console.log(namer);
+                // console.log(namer);
                 if (namer.length >= 3)
                     songs.push(namer);
                 namer = '';
@@ -179,10 +202,13 @@ fetch(serverID+'lists.txt')
         generateSongsList();
     })
 
-function loadSong(songnewIndex) {
+function loadSong(songnewIndex,url) {
     songIndex = songnewIndex;
     title.innerText = songs[songnewIndex];
-    audio.src = `${dir}/${songs[songnewIndex]}.mp3`;
+    if (url == undefined)
+        audio.src = `${dir}/${songs[songnewIndex]}.mp3`;
+    else
+        audio.src = url;
     cover.src = `music-logo.jpg`;
 }
 
@@ -194,6 +220,7 @@ document.addEventListener('keydown', (event) => {
     const isplaying = musicContainer.classList.contains('play');
     // console.log(even t.key);
     if (event.key == ' ') {
+        arcCanvas.focus()
         if (isplaying)
             pauseSong();
         else
