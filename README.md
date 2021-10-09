@@ -43,7 +43,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## 📝About The Project
-
+![Screenshot](https://user-images.githubusercontent.com/55138889/136654146-f15f1e3a-cdeb-47c5-82cc-55b3b829d8e7.jpg)
 <br />
 This is a simple website app for visualizing your audio clips. You can just lauch the site play the audio. It is made using simple Vanilla JS and HTML. Do star⭐ the repo if you like it 😊.
 
@@ -168,8 +168,8 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@thisisbipin](https://twitter.com/thisisbipin)
-
+Twitter - [@thisisbipin](https://twitter.com/thisisbipin)
+LinkedIn - [@bipinmjadav](https://www.linkedin.com/in/bipinmjadav/) 
 Project Link: [https://github.com/thisisbipin/GeetMusicPlayer/](https://github.com/thisisbipin/GeetMusicPlayer/)
 
 <p align="right">(<a href="#top">⬆️</a>)</p>
