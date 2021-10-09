@@ -209,7 +209,7 @@ let imageloc = [
 ];
 
 let number = 1;     //provide custom number for wallpaper
-let number = Math.floor(Math.floor(Math.random() * (imageloc.length + 1)));
+number = Math.floor(Math.floor(Math.random() * (imageloc.length + 1)));
 let body = document.getElementById("body");
 if (imageloc[number] == undefined)
     alert('The wallpaper according to the number do not exist.')
