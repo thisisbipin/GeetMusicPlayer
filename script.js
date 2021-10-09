@@ -208,8 +208,8 @@ let imageloc = [
 
 ];
 
-let number = 1;     //provide custom number for wallpaper
-//number = Math.floor(Math.floor(Math.random() * (imageloc.length + 1)));
+let number = 0;     //provide custom number for wallpaper
+// number = Math.floor(Math.floor(Math.random() * (imageloc.length + 1)));  // comment out this line if you do not want random images from the list
 let body = document.getElementById("body");
 if (imageloc[number] == undefined)
     alert('The wallpaper according to the number do not exist.')
@@ -280,11 +280,13 @@ musicContainer.addEventListener("wheel", (e) => {
 })
 
 var wave = new Wave();
+
 wave.fromElement("audio", "audio_visual", {
     stroke: 2,
     type: "bars",
     colors: ["white", "pink", "white", "pink", "white", "pink", "white", "pink", "white", "pink", "white", "pink"]//, "blue", "white"]
 });
+
 wave.fromElement("audio", "audio_visual-img", {
     stroke: 2,
     type: "web",
