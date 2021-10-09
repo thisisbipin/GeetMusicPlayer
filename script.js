@@ -1,9 +1,11 @@
+/*
+    ---- Geet Music player -----
+    Author: Bipin Jadav 🎶
+    License: MIT 📚 
+
+*/
 
 let songs = [];
-let songsLOC = [];
-
-
-let dir = 'musics/'
 let songIndex = 2;
 let volume = 0.5;
 let animating = false;

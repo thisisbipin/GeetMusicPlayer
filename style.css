@@ -53,7 +53,6 @@ body h1{
     top: 40px;
     height: 210px;
     width:510px;
-    /* background-color: black; */
 }
 .img-container img{
     width: 110px;
@@ -64,7 +63,6 @@ body h1{
     bottom:25%;
     left: 147px;
     cursor: pointer;
-    /* opacity: 0; */
     animation: rotate 3s linear infinite;
     animation-play-state: paused;
     z-index: 12;
@@ -82,12 +80,9 @@ body h1{
     }
 }
 .audio-canvas-img{
-    /* position: relative; */
     position: absolute;
     left: 87px;
     top:-12px;
-    /* width: 400px;
-    height: 200px; */
     background-color: rgba(114, 66, 66, 0);
 }
 .navigation {
@@ -285,4 +280,12 @@ input[type="file"] {
 }
 .custom-file-upload:hover {
     background-color: #fe8da9cc;
+}
+
+
+.make-statement{
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    color: white;
 }
