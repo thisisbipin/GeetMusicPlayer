@@ -4,13 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="icon" type="image/png" href="public/src/favicon.png"/>
+    <link rel="icon" type="image/png" href="public/src/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Music player</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/gh/foobar404/wave.js/dist/bundle.iife.js"></script>
     <script src="./script.js" defer></script>
+    <!-- // Loading Music Controls -->
+    <script src="./public/scripts/musicControls.js"></script>
 </head>
 
 <body id="body">
@@ -39,15 +41,15 @@
 
 
     <label class="custom-folder-upload">
-    <input type="file"  id="browse-Folder" webkitdirectory/>
-    Add songs from Folder
-</label>
-<label class="custom-file-upload">
-    <input type="file"  id="browse-File" multiple/>
-    Add Song
-</label>
+        <input type="file" id="browse-Folder" webkitdirectory />
+        Add songs from Folder
+    </label>
+    <label class="custom-file-upload">
+        <input type="file" id="browse-File" multiple />
+        Add Song
+    </label>
 
-
+    <canvas class="particle-canvas"></canvas>
     <canvas class="audio-canvas" id="audio_visual"></canvas>
 
     <div class="music-container" id="music-container-ID">

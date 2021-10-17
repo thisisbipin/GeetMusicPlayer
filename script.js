@@ -43,76 +43,6 @@ audio.addEventListener('ended', nextSong);
 
 
 
-/* --------------- MUSIC CONTROLS ------------- */
-function playSong() {
-    musicContainer.classList.add('play');
-    imageContainer.classList.add('play');
-    playBtn.querySelector('i.fas').classList.remove('fa-play');
-    playBtn.querySelector('i.fas').classList.add('fa-pause');
-    audio.play();
-
-    let arcCanvas = document.getElementById('progress-rotation-id'); // updating the rotating arc 
-    arcCanvas.classList.add("rotation");
-}
-function pauseSong() {
-    musicContainer.classList.remove('play');
-    imageContainer.classList.remove('play');
-    playBtn.querySelector('i.fas').classList.remove('fa-pause');
-    playBtn.querySelector('i.fas').classList.add('fa-play');
-    audio.pause();
-
-    let arcCanvas = document.getElementById('progress-rotation-id'); // updating the rotating arc 
-    arcCanvas.classList.remove("rotation");
-}
-function prevSong() {
-    songIndex--;
-    if (songIndex < 0)
-        songIndex = songs.length - 1;
-    loadSong(songIndex);
-    playSong();
-}
-function nextSong() {
-    songIndex++;
-    if (songIndex > songs.length - 1)
-        songIndex = 0;
-    loadSong(songIndex);
-    playSong();
-}
-function updateProgress(e) {
-    const { duration, currentTime } = e.srcElement; // extracting info from e
-    const progressPercent = (currentTime / duration) * 100;
-    progress.style.width = `${progressPercent}%`;
-
-    drawArc(progressPercent / 100);     // updaing the lenght of the rotating arc
-}
-function setProgress(e) {
-    const width = clientWidth;
-    const clickX = e.offsetX;
-    const duration = audio.duration;
-    audio.currentTime = (clickX / width) * duration;
-}
-function updateVolume(change) {
-    volume += 0.1 * change;
-    volume = Math.min(1, Math.max(0, volume));
-    audio.volume = volume;
-
-    // Visuals
-    let volumeSlider = document.querySelector('.volume-slider');
-    volumeSlider.style.width = volume * 100 + '%';
-    let volumeSliderContainer = document.querySelector('.volume-slider-container');
-
-    if (animating == true)
-        return;
-    animating = true;
-    volumeSliderContainer.style.opacity = 1;
-    let fade = setInterval(() => {
-        animating = false;
-        volumeSliderContainer.style.opacity = 0;
-    }, 4000);
-}
-
-
-
 
 /* ----------- This function generates the list of the songs and loads their names into the windows -------------- */
 function generateSongsList() {
@@ -124,11 +54,11 @@ function generateSongsList() {
         list.appendChild(newname);
     }
 }
-function addsongtolist(songSRC){
+function addsongtolist(songSRC) {
     let list = document.getElementById('list');
     let newname = document.createElement('li');
     newname.textContent = songs[songs.length - 1];
-    newname.setAttribute('onclick', 'loadSong(' + (songs.length - 1) + ',url = \"'+ songSRC +'\"); playSong();');
+    newname.setAttribute('onclick', 'loadSong(' + (songs.length - 1) + ',url = \"' + songSRC + '\"); playSong();');
     list.appendChild(newname);
 }
 
@@ -176,7 +106,7 @@ function inputchanged(folder = false) {
         if (want_to_alert == true)
             alert('You Selected some non-song files! That was not added to the list. Please select valid song files only');
     }
-    if (songs.length > 0) { loadSong(0);}
+    if (songs.length > 0) { loadSong(0); }
 }
 
 
@@ -214,7 +144,7 @@ let body = document.getElementById("body");
 if (imageloc[number] == undefined)
     alert('The wallpaper according to the number do not exist.')
 let css = `background-image: url(\"${imageloc}\") ; height:${window.innerHeight}px; width: ${window.innerWidth}px;`;
-document.body.setAttribute("style", css );
+document.body.setAttribute("style", css);
 
 browseHandlerFile.setAttribute('onchange', 'inputchanged()');
 browseHandlerFolder.setAttribute('onchange', 'inputchanged(true)');
@@ -243,7 +173,7 @@ browseHandlerFolder.setAttribute('onchange', 'inputchanged(true)');
 
 
 
-function loadSong(songnewIndex,url) {
+function loadSong(songnewIndex, url) {
     songIndex = songnewIndex;
     title.innerText = songs[songnewIndex];
     if (url == undefined)
@@ -323,9 +253,9 @@ function drawArc(progressf) {
 setInterval(() => {
     let today = new Date();
     let time = {
-        hrs: (today.getHours()<10)?"0"+today.getHours() :today.getHours(),
-        min: (today.getMinutes()<10)?"0"+today.getMinutes() :today.getMinutes(),
-        sec: (today.getSeconds()<10)?"0"+today.getSeconds() :today.getSeconds(),
+        hrs: (today.getHours() < 10) ? "0" + today.getHours() : today.getHours(),
+        min: (today.getMinutes() < 10) ? "0" + today.getMinutes() : today.getMinutes(),
+        sec: (today.getSeconds() < 10) ? "0" + today.getSeconds() : today.getSeconds(),
     }
     document.getElementById("clock-id").textContent = time.hrs + ":" + time.min + ":" + time.sec;
 }, 1000);
