@@ -147,6 +147,9 @@ body h1{
 
 .audio-canvas{
     position: absolute;
+    padding: 3px;
+    padding-left: 13px;
+    border-bottom: 3px solid white;
     left:20px; 
     bottom: 20px;
     width: 50%;
