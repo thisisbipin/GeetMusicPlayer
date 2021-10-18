@@ -1,10 +1,25 @@
 /* --------------- MUSIC CONTROLS ------------- */
+
+function loadSong(idx, url) {
+    songIndex = idx;
+    title.innerText = G.songsList[idx];
+    if (url == undefined)
+        audio.src = G.songsSRC[idx];
+    else
+        audio.src = url;
+
+    audio.onloadedmetadata = function () {
+        G.isloaded = true;
+    }
+}
+
+
 function playSong() {
     $('#music-container-ID').addClass('play');
     $('#play') > $('i.play-button').removeClass('fa-play');
     $('#play') > $('i.play-button').addClass('fa-pause');
     audio.play();
-
+    G.isplaying = true;
     $('#progress-rotation-id').addClass("rotation");
 }
 function pauseSong() {
@@ -12,8 +27,8 @@ function pauseSong() {
     $('#play') > $('i.play-button').removeClass('fa-pause');
     $('#play') > $('i.play-button').addClass('fa-play');
     audio.pause();
-
-    $('#progress-rotation-id').addClass("rotation");
+    G.isplaying = false;
+    $('#progress-rotation-id').removeClass("rotation");
 }
 function prevSong() {
     G.songIndex--;
@@ -30,17 +45,22 @@ function nextSong() {
     playSong();
 }
 function updateProgress(e) {
-    const { duration, currentTime } = e.srcElement; // extracting info from e
-    const progressPercent = (currentTime / duration) * 100;
-    $('.progress').width = `${progressPercent}%`;
+    if (G.isloaded == false)
+        return;
+    let currSongDuration = audio.duration;
+    const { currentTime } = e.srcElement; // extracting info from e
+    let progressPercent = (currentTime / currSongDuration) * 100;
+    $('.progress').width(progressPercent + '%');
+    drawArc(progressPercent);     // updaing the lenght of the rotating arc
+};
 
-    drawArc(progressPercent / 100);     // updaing the lenght of the rotating arc
-}
 function setProgress(e) {
     const width = $('.progress-container').innerWidth();
     const clickX = e.originalEvent.offsetX;
     const duration = audio.duration;
-    audio.currentTime = (clickX / width) * duration;
+    let p = (clickX / width) * duration;
+    console.log(p);
+    audio.currentTime = p.toFixed(2);
 }
 
 
@@ -52,13 +72,13 @@ function updateVolume(change) {
     // Visuals
     $('.volume-slider').width(G.volume * 100 + '%');
 
-    if (G.isanimating == true)
+    if (G.isplaying == true)
         return;
-    G.isanimating = true;
+    G.isplaying = true;
 
     $('.volume-slider-container').css('opacity', '1');
     let fade = setInterval(() => {
-        G.isanimating = false;
+        G.isplaying = false;
         $('.volume-slider-container').css('opacity', '0');
     }, 4000);
 }
