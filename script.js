@@ -135,20 +135,21 @@ function toggle() {
 let imageloc = [
     'https://cdn.pixabay.com/photo/2018/01/14/23/12/nature-3082832_1280.jpg',
     // For adding wallpapers add the Photo URLs below this line
-
+    'https://wallpapercave.com/wp/wp2077495.jpg',
+    './public/assets/img/bg.jpg'
 ];
 
-let number = 0;     //provide custom number for wallpaper
+let number = 1;     //provide custom number for wallpaper
 // number = Math.floor(Math.floor(Math.random() * (imageloc.length)));  // comment out this line if you do not want random images from the list
 let body = document.getElementById("body");
 if (imageloc[number] == undefined)
     alert('The wallpaper according to the number do not exist.')
-let css = `background-image: url(\"${imageloc}\") ; height:${window.innerHeight}px; width: ${window.innerWidth}px;`;
+let css = `background-image: url(\"${imageloc[number]}\") ; height:${window.innerHeight}px; width: ${window.innerWidth}px;`;
 document.body.setAttribute("style", css);
 
 browseHandlerFile.setAttribute('onchange', 'inputchanged()');
 browseHandlerFolder.setAttribute('onchange', 'inputchanged(true)');
-
+loadParticles();
 
 // # TODO server Mode
 // const serverID = './';
