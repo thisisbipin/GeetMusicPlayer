@@ -5,40 +5,43 @@
 
 */
 
-let songs = [];
-let songIndex = 2;
-let volume = 0.5;
-let animating = false;
-let musicContainer = document.getElementById('music-container-ID');
-let imageContainer = document.querySelector('.img-container');
-let playBtn = document.querySelector('#play');
-let prevBtn = document.querySelector('#prev');
-let nextBtn = document.querySelector('#next');
-let audio = document.querySelector('#audio'); audio.volume = volume;
-let progress = document.querySelector('.progress');
-let progressContainer = document.querySelector('.progress-container');
-let title = document.querySelector('#title');
-let cover = document.querySelector('#cover');
-let clientWidth = document.querySelector('.progress-container').clientWidth;
-let arcCanvas = document.getElementById("myCanvas");
-let browseHandlerFolder = document.getElementById('browse-Folder');
-let browseHandlerFile = document.getElementById('browse-File');
+let G = {
+    songsList: ['Alan walker Sky'],
+    songsSRC: ['./public/musics/Alan walker Sky.mp3'],
+    songIndex: 0,
+    volume: 0.5,
+    isplaying: false,
+    isloaded: false,
+    BGimages: [
+        'https://cdn.pixabay.com/photo/2018/01/14/23/12/nature-3082832_1280.jpg',
+        // For adding wallpapers add the Photo URLs below this line
+        'https://wallpapercave.com/wp/wp2077495.jpg',
+        './public/assets/img/bg.jpg'
+    ],
+    BGnumber: 1,     //provide custom number for wallpaper
+}
 
+let audio = document.querySelector('#audio');
+audio.volume = G.volume;
 
 
 /* Event Listeners */
-playBtn.addEventListener('click', () => {
-    const isplaying = musicContainer.classList.contains('play');
+$('#play').click(() => {
+    // const isplaying = musicContainer.classList.contains('play');
+    const isplaying = $('#music-container-ID').hasClass('play');
     if (isplaying)
         pauseSong();
     else
         playSong();
 });
-prevBtn.addEventListener('click', prevSong);
-nextBtn.addEventListener('click', nextSong);
+$('#prev').click(function () { prevSong(); });
+$('#next').click(function () { nextSong(); })
+
 audio.addEventListener('timeupdate', updateProgress);
-progressContainer.addEventListener('click', setProgress);
 audio.addEventListener('ended', nextSong);
+
+$('.progress-container').click((e) => setProgress(e));
+
 
 
 
@@ -47,36 +50,35 @@ audio.addEventListener('ended', nextSong);
 /* ----------- This function generates the list of the songs and loads their names into the windows -------------- */
 function generateSongsList() {
     let list = document.getElementById('list');
-    for (let i = 0; i < songs.length; i++) {
-        let newname = document.createElement('li');
-        newname.textContent = songs[i];
-        newname.setAttribute('onclick', 'loadSong(' + i + '); playSong();');
-        list.appendChild(newname);
-    }
+    for (let i = 0; i < G.songsList.length; i++)
+        addsongtolist(i);
 }
-function addsongtolist(songSRC) {
+function addsongtolist(idx) {
     let list = document.getElementById('list');
     let newname = document.createElement('li');
-    newname.textContent = songs[songs.length - 1];
-    newname.setAttribute('onclick', 'loadSong(' + (songs.length - 1) + ',url = \"' + songSRC + '\"); playSong();');
+    newname.textContent = G.songsList[G.songsList.length - 1];
+    newname.setAttribute('onclick', 'loadSong(' + idx + '); playSong();');
     list.appendChild(newname);
 }
 
 function inputchanged(folder = false) {
+    let supportedEXT = ['.mp3', '.wav'];
     let want_to_alert = false;
     if (folder == true) {
 
         // If selected from the folder
-
+        let browseHandlerFolder = document.getElementById('browse-folder')
         for (let i = 0; i < browseHandlerFolder.files.length; i++) {
             let newsong = browseHandlerFolder.files[i];
             let ext = newsong.name.substr(newsong.name.length - 4);
-            if (ext == '.mp3' || ext == '.wav') {
+            if (supportedEXT.find(e => e == ext) != undefined) {
                 newsongname = newsong.name.substr(0, newsong.name.length - 4)
-                if (songs.find(s => s == newsongname) == undefined) {
-                    songs.push(newsongname);
+                if (G.songsList.find(s => s == newsongname) == undefined) {
+
+                    G.songsList.push(newsongname);
                     let songSRC = URL.createObjectURL(newsong);
-                    addsongtolist(songSRC);
+                    G.songsSRC.push(songSRC);
+                    addsongtolist(G.songsList.find(song => song == newsongname));
                 }
             } else
                 want_to_alert = true;
@@ -87,16 +89,18 @@ function inputchanged(folder = false) {
     } else {
 
         // If selected from the files
-
+        let browseHandlerFile = document.getElementById('browse-file')
         for (let i = 0; i < browseHandlerFile.files.length; i++) {
             let newsong = browseHandlerFile.files[i];
             let ext = newsong.name.substr(newsong.name.length - 4);
-            if (ext == '.mp3' || ext == '.wav') {
+            if (supportedEXT.find(e => e == ext) != undefined) {
                 newsongname = newsong.name.substr(0, newsong.name.length - 4)
-                if (songs.find(s => s == newsongname) == undefined) {
-                    songs.push(newsongname);
+                if (G.songsList.find(s => s == newsongname) == undefined) {
+
+                    G.songsList.push(newsongname);
                     let songSRC = URL.createObjectURL(newsong);
-                    addsongtolist(songSRC);
+                    G.songsSRC.push(songSRC);
+                    addsongtolist(G.songsList.find(song => song == newsongname));
                 }
                 else
                     alert('Song is already in the list');
@@ -106,11 +110,12 @@ function inputchanged(folder = false) {
         if (want_to_alert == true)
             alert('You Selected some non-song files! That was not added to the list. Please select valid song files only');
     }
-    if (songs.length > 0) { loadSong(0); }
+    if (G.songsList.length > 0) { loadSong(0); }
 }
 
 
 /* --- This function is responsible for the showing/hiding of the song menu ------ */
+// $('#music-icon').click(() => { $('#song-list-id').show(); console.log('clicked') })
 let img = document.getElementById('music-icon')
 img.setAttribute('onclick', 'toggle()');
 function toggle() {
@@ -132,68 +137,41 @@ function toggle() {
 
 
 // modify this list to add your own wallpapers and select them randomly 
-let imageloc = [
-    'https://cdn.pixabay.com/photo/2018/01/14/23/12/nature-3082832_1280.jpg',
-    // For adding wallpapers add the Photo URLs below this line
-    'https://wallpapercave.com/wp/wp2077495.jpg',
-    './public/assets/img/bg.jpg'
-];
-
-let number = 1;     //provide custom number for wallpaper
-// number = Math.floor(Math.floor(Math.random() * (imageloc.length)));  // comment out this line if you do not want random images from the list
-let body = document.getElementById("body");
-if (imageloc[number] == undefined)
-    alert('The wallpaper according to the number do not exist.')
-let css = `background-image: url(\"${imageloc[number]}\") ; height:${window.innerHeight}px; width: ${window.innerWidth}px;`;
-document.body.setAttribute("style", css);
-
-browseHandlerFile.setAttribute('onchange', 'inputchanged()');
-browseHandlerFolder.setAttribute('onchange', 'inputchanged(true)');
-loadParticles();
-
-// # TODO server Mode
-// const serverID = './';
-// fetch(serverID+'lists.txt')
-//     .then(response => response.text())
-//     .then(text => {
-//         // console.log(text);
-//         let namer = '';
-//         for (let i = 0; i < text.length; i++) {
-//             if (text[i] == '\n') {
-//                 // console.log(namer);
-//                 if (namer.length >= 3)
-//                     songs.push(namer);
-//                 namer = '';
-//             }
-//             namer += text[i];
-//         }
-//         loadSong(0);
-//         generateSongsList();
-//     })
 
 
-
-
-function loadSong(songnewIndex, url) {
-    songIndex = songnewIndex;
-    title.innerText = songs[songnewIndex];
-    if (url == undefined)
-        audio.src = `${dir}/${songs[songnewIndex]}.mp3`;
+function updateImage(i) {
+    if (i == -1)
+        G.BGnumber = Math.floor(Math.floor(Math.random() * (G.BGimages.length)));  // comment out this line if you do not want random images from the list
+    else if (G.BGnumber + i >= G.BGimages.length)
+        G.BGnumber = 0;
+    else if (G.BGnumber + i < 0)
+        G.BGnumber = G.BGimages.length - 1;
     else
-        audio.src = url;
-    cover.src = `music-logo.jpg`;
+        G.BGnumber += i;
+    if (G.BGnumber)
+        if (G.BGimages[G.BGnumber] == undefined)
+            alert('The wallpaper according to the number do not exist.')
+
+    let css = `background-image: url(\"${G.BGimages[G.BGnumber]}\") ; height:${window.innerHeight}px; width: ${window.innerWidth}px;`;
+    document.body.setAttribute("style", css);
+
 }
 
+updateImage(0);
+$('browse-file').on('onchange', 'inputchanged()');
+$('browse-folder').on('onchange', 'inputchanged(true)');
+loadParticles();
+
+loadSong(0);
 
 
 
 // press space to play
 document.addEventListener('keydown', (event) => {
-    const isplaying = musicContainer.classList.contains('play');
     // console.log(even t.key);
     if (event.key == ' ') {
         arcCanvas.focus()
-        if (isplaying)
+        if (G.isplaying)
             pauseSong();
         else
             playSong();
@@ -205,20 +183,20 @@ document.addEventListener('keydown', (event) => {
 });
 
 // mouse wheel to control volume 
-musicContainer.addEventListener("wheel", (e) => {
-    let sign = (e.deltaY < 0) ? 1 : -1;
+$('.music-container').on("wheel", (e) => {
+    let sign = (e.originalEvent.wheelDelta < 0) ? -1 : 1;
     updateVolume(sign);
 })
 
 var wave = new Wave();
 
-wave.fromElement("audio", "audio_visual", {
+wave.fromElement("audio", "bar-visualizer", {
     stroke: 2,
     type: "bars",
     colors: ["white", "pink", "white", "pink", "white", "pink", "white", "pink", "white", "pink", "white", "pink"]//, "blue", "white"]
 });
 
-wave.fromElement("audio", "audio_visual-img", {
+wave.fromElement("audio", "web-visualizer", {
     stroke: 2,
     type: "web",
     colors: ["white", "pink", "white", "pink", "white", "pink", "white", "pink", "white", "pink", "white", "pink"]//, "blue", "white"]
@@ -234,14 +212,16 @@ function changeResolution(canvas, scaleFactor) {
     var ctx = canvas.getContext('2d');
     ctx.scale(scaleFactor, scaleFactor);
 }
-let canvas = document.getElementById("audio_visual");
+let canvas = document.getElementById("bar-visualizer");
 changeResolution(canvas, 1);
 
 
 
 /* -------- arc drawing ---------- */
 function drawArc(progressf) {
-    var ctx = arcCanvas.getContext("2d");
+    progressf = progressf / 100;
+    let arcCanvas = document.getElementById('audio-canvas-img');
+    let ctx = arcCanvas.getContext('2d');
     ctx.clearRect(0, 0, arcCanvas.width, arcCanvas.height);
     ctx.beginPath();
     ctx.lineWidth = 7;

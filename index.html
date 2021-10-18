@@ -9,7 +9,9 @@
     <title>Music player</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <!-- Modules -->
     <script src="https://cdn.jsdelivr.net/gh/foobar404/wave.js/dist/bundle.iife.js"></script>
+    <script src="./public/scripts/jquery-3.6.0.min.js" defer></script>
 
     <!-- // Particle effects feature -->
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
@@ -18,6 +20,7 @@
     <!-- // Loading Music Controls -->
     <script src="./public/scripts/musicControls.js"></script>
 
+    <!-- Main script file -->
     <script src="./script.js" defer></script>
 </head>
 
@@ -26,18 +29,17 @@
 
     <h1 style="align-self: center;">गीत Music Player</h1>
 
-
     <div class="head">
         <div class="img-container" id="cover">
             <img src="./public/assets/music-logo.jpg" id='music-icon' alt="music-cover">
-            <canvas class="audio-canvas-img" id="audio_visual-img" width="230px" height="230px"></canvas>
+            <canvas class="audio-canvas-img" id="web-visualizer" width="230px" height="230px"></canvas>
         </div>
         <div id="song-list-id" class="song-list" style="opacity: 0;">
             <ul id='list'></ul>
         </div>
         <div class="progress-rotation" id="progress-rotation-id">
             <div class="circle-outer">
-                <canvas id="myCanvas" class="rotation" width="200px" height="200px"></canvas>
+                <canvas id="audio-canvas-img" class="rotation" width="200px" height="200px"></canvas>
             </div>
         </div>
     </div>
@@ -55,8 +57,7 @@
         Add Song
     </label>
 
-    <div id="particles-js" class="particle-background"></div>
-    <canvas class="audio-canvas" id="audio_visual"></canvas>
+    <canvas class="audio-canvas" id="bar-visualizer"></canvas>
 
     <div class="music-container" id="music-container-ID">
         <div class="music-info">
@@ -72,7 +73,7 @@
                 <i class="fas fa-backward"></i>
             </button>
             <button id="play" class="action-btn action-btn-big">
-                <i class="fas fa-play"></i>
+                <i class="fas fa-play play-button"></i>
             </button>
             <button id="next" class="action-btn">
                 <i class="fas fa-forward"></i>
@@ -83,8 +84,10 @@
         <div class="volume-slider"></div>
     </div>
 
+    <div id="particles-js" class="particle-background"></div>
+    <div class="settings"></div>
     <div class="make-statement">
-        Made with 🎶 by Bipin Jadav.
+        Made with 🎶 by Bipin Jadav. <i id="settings-icon" class="far fa-question-circle"></i>
     </div>
 </body>
 
