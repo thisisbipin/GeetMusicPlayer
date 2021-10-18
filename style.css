@@ -321,6 +321,35 @@ input[type="file"] {
     position: absolute;
     height: 400px;
     width: 300px;
-    background-color: rgba(255, 255, 255, 0.568);
+    background-color: rgba(255, 255, 255, 0.856);
     z-index: 7;
+}
+#settings li{
+    font-size: 20px;
+    padding: 2px;
+    list-style: none;
+}
+#settings span{
+    font-size: 20px;
+    position: inherit;
+    left: calc(50% - 40px);
+    align-self: center;
+
+    border: 1px solid black;
+    background-color: #fe8da90f;
+    display: inline-block;
+    padding: 12px 12px;
+    cursor: pointer;
+    transition: 0.1s ease all;
+    z-index: 2;
+}
+
+#settings span:hover{
+    color: white;
+    background-color: rgb(129, 129, 129);
+}
+.bgchanger{
+    cursor: pointer;
+    font-size: 30px;
+    color:rgb(59, 59, 59);
 }

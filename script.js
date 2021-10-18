@@ -161,8 +161,7 @@ function updateImage(i) {
 updateImage(0);
 $('#browse-file').change(() => inputchanged());
 $('#browse-folder').change(() => inputchanged(true));
-loadParticles();
-$('#settings').hide();
+
 loadSong(0);
 
 
@@ -171,7 +170,8 @@ loadSong(0);
 document.addEventListener('keydown', (event) => {
     // console.log(even t.key);
     if (event.key == ' ') {
-        arcCanvas.focus()
+        if (document.activeElement.id == 'play')
+            return;
         if (G.isplaying)
             pauseSong();
         else

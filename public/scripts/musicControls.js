@@ -31,6 +31,7 @@ function pauseSong() {
     $('#progress-rotation-id').removeClass("rotation");
 }
 function prevSong() {
+    document.activeElement.id = 'play';
     G.songIndex--;
     if (G.songIndex < 0)
         G.songIndex = G.songsList.length - 1;
@@ -38,6 +39,7 @@ function prevSong() {
     playSong();
 }
 function nextSong() {
+    document.activeElement.id = 'play';
     G.songIndex++;
     if (G.songIndex > G.songsList.length - 1)
         G.songIndex = 0;
