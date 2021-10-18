@@ -47,7 +47,7 @@ body h1{
     width: 400px;
 
     margin: 100px 0;
-    z-index: 10;
+    z-index: 4;
 }
 .img-container{
     position: absolute;
@@ -67,7 +67,7 @@ body h1{
     cursor: pointer;
     animation: rotate 3s linear infinite;
     animation-play-state: paused;
-    z-index: 12;
+    z-index: 6;
 }
 .img-container.play img{
     animation-play-state: paused;
@@ -220,7 +220,7 @@ body h1{
     background-color: rgba(112, 91, 91, 0);
     animation: rotate 20s linear infinite;
     animation-play-state: paused;
-    z-index: 11;
+    z-index: 5;
 }
 
 .rotation{
@@ -298,6 +298,7 @@ input[type="file"] {
     bottom: 20px;
     right: 20px;
     color: white;
+    z-index: 8;
 }
 
 
@@ -315,4 +316,11 @@ input[type="file"] {
 }
 #settings-icon{
     cursor: pointer;
+}
+#settings{
+    position: absolute;
+    height: 400px;
+    width: 300px;
+    background-color: rgba(255, 255, 255, 0.568);
+    z-index: 7;
 }
