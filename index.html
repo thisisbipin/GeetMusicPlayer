@@ -20,6 +20,9 @@
     <!-- // Loading Music Controls -->
     <script src="./public/scripts/musicControls.js"></script>
 
+    <!-- Handling settings -->
+    <script src="./public/scripts/settings.js" defer></script>
+
     <!-- Main script file -->
     <script src="./script.js" defer></script>
 </head>
@@ -49,11 +52,11 @@
 
 
     <label class="custom-folder-upload">
-        <input type="file" id="browse-Folder" webkitdirectory />
+        <input type="file" id="browse-folder" webkitdirectory />
         Add songs from Folder
     </label>
     <label class="custom-file-upload">
-        <input type="file" id="browse-File" multiple />
+        <input type="file" id="browse-file" multiple />
         Add Song
     </label>
 
@@ -85,7 +88,7 @@
     </div>
 
     <div id="particles-js" class="particle-background"></div>
-    <div class="settings"></div>
+    <div id="settings"></div>
     <div class="make-statement">
         Made with 🎶 by Bipin Jadav. <i id="settings-icon" class="far fa-question-circle"></i>
     </div>

@@ -62,6 +62,7 @@ function addsongtolist(idx) {
 }
 
 function inputchanged(folder = false) {
+    console.log('I trigerred');
     let supportedEXT = ['.mp3', '.wav'];
     let want_to_alert = false;
     if (folder == true) {
@@ -78,7 +79,7 @@ function inputchanged(folder = false) {
                     G.songsList.push(newsongname);
                     let songSRC = URL.createObjectURL(newsong);
                     G.songsSRC.push(songSRC);
-                    addsongtolist(G.songsList.find(song => song == newsongname));
+                    addsongtolist(G.songsList.findIndex(song => song == newsongname));
                 }
             } else
                 want_to_alert = true;
@@ -100,7 +101,7 @@ function inputchanged(folder = false) {
                     G.songsList.push(newsongname);
                     let songSRC = URL.createObjectURL(newsong);
                     G.songsSRC.push(songSRC);
-                    addsongtolist(G.songsList.find(song => song == newsongname));
+                    addsongtolist(G.songsList.findIndex(song => song == newsongname));
                 }
                 else
                     alert('Song is already in the list');
@@ -158,10 +159,11 @@ function updateImage(i) {
 }
 
 updateImage(0);
-$('browse-file').on('onchange', 'inputchanged()');
-$('browse-folder').on('onchange', 'inputchanged(true)');
+$('#browse-file').change(() => inputchanged());
+// document.getElementById('browse-file').onchange = 'inputchanged()';
+// document.getElementById('browse-folder').onchange = 'inputchanged(true)';
 loadParticles();
-
+$('#settings').hide();
 loadSong(0);
 
 
