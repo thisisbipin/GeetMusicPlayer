@@ -160,8 +160,7 @@ function updateImage(i) {
 
 updateImage(0);
 $('#browse-file').change(() => inputchanged());
-// document.getElementById('browse-file').onchange = 'inputchanged()';
-// document.getElementById('browse-folder').onchange = 'inputchanged(true)';
+$('#browse-folder').change(() => inputchanged(true));
 loadParticles();
 $('#settings').hide();
 loadSong(0);
