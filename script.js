@@ -5,40 +5,44 @@
 
 */
 
-let songs = [];
-let songIndex = 2;
-let volume = 0.5;
-let animating = false;
-let musicContainer = document.getElementById('music-container-ID');
-let imageContainer = document.querySelector('.img-container');
-let playBtn = document.querySelector('#play');
-let prevBtn = document.querySelector('#prev');
-let nextBtn = document.querySelector('#next');
-let audio = document.querySelector('#audio'); audio.volume = volume;
-let progress = document.querySelector('.progress');
-let progressContainer = document.querySelector('.progress-container');
-let title = document.querySelector('#title');
-let cover = document.querySelector('#cover');
-let clientWidth = document.querySelector('.progress-container').clientWidth;
-let arcCanvas = document.getElementById("myCanvas");
-let browseHandlerFolder = document.getElementById('browse-Folder');
-let browseHandlerFile = document.getElementById('browse-File');
+let G = {
+    songsList: ['Alan walker Sky'],
+    songIndex: 0,
+    volume: 0.5,
+    isanimating: false,
+}
+
+// let musicContainer = document.getElementById('music-container-ID');
+// let imageContainer = document.querySelector('.img-container');
+let audio = document.querySelector('#audio'); audio.volume = G.volume;
+// let progress = document.querySelector('.progress');
+// let progressContainer = document.querySelector('.progress-container');
+// let title = document.querySelector('#title');
+// let cover = document.querySelector('#cover');
+// let clientWidth = document.querySelector('.progress-container').clientWidth;
+// let arcCanvas = document.getElementById("myCanvas");
+// let browseHandlerFolder = document.getElementById('browse-Folder');
+// let browseHandlerFile = document.getElementById('browse-File');
 
 
 
 /* Event Listeners */
-playBtn.addEventListener('click', () => {
-    const isplaying = musicContainer.classList.contains('play');
+$('#play').click(() => {
+    // const isplaying = musicContainer.classList.contains('play');
+    const isplaying = $('#music-container-ID').hasClass('play');
     if (isplaying)
         pauseSong();
     else
         playSong();
 });
-prevBtn.addEventListener('click', prevSong);
-nextBtn.addEventListener('click', nextSong);
+$('#prev').click(function () { prevSong(); });
+$('#next').click(function () { nextSong(); })
+
 audio.addEventListener('timeupdate', updateProgress);
-progressContainer.addEventListener('click', setProgress);
 audio.addEventListener('ended', nextSong);
+
+$('.progress-container').click((e) => setProgress(e));
+
 
 
 
@@ -147,8 +151,8 @@ if (imageloc[number] == undefined)
 let css = `background-image: url(\"${imageloc[number]}\") ; height:${window.innerHeight}px; width: ${window.innerWidth}px;`;
 document.body.setAttribute("style", css);
 
-browseHandlerFile.setAttribute('onchange', 'inputchanged()');
-browseHandlerFolder.setAttribute('onchange', 'inputchanged(true)');
+$('browse-file').on('onchange', 'inputchanged()');
+$('browse-folder').on('onchange', 'inputchanged(true)');
 loadParticles();
 
 // # TODO server Mode
@@ -173,12 +177,13 @@ loadParticles();
 
 
 
-
+loadSong(0);
 function loadSong(songnewIndex, url) {
+    let dir = './public/musics'
     songIndex = songnewIndex;
-    title.innerText = songs[songnewIndex];
+    title.innerText = G.songsList[songnewIndex];
     if (url == undefined)
-        audio.src = `${dir}/${songs[songnewIndex]}.mp3`;
+        audio.src = `${dir}/${G.songsList[songnewIndex]}.mp3`;
     else
         audio.src = url;
     cover.src = `music-logo.jpg`;
@@ -205,8 +210,8 @@ document.addEventListener('keydown', (event) => {
 });
 
 // mouse wheel to control volume 
-musicContainer.addEventListener("wheel", (e) => {
-    let sign = (e.deltaY < 0) ? 1 : -1;
+$('.music-container').on("wheel", (e) => {
+    let sign = (e.originalEvent.wheelDelta < 0) ? -1 : 1;
     updateVolume(sign);
 })
 
@@ -241,7 +246,8 @@ changeResolution(canvas, 1);
 
 /* -------- arc drawing ---------- */
 function drawArc(progressf) {
-    var ctx = arcCanvas.getContext("2d");
+    let canvas = $('#progress-rotation-id');
+    var ctx = $(canvas)[0].getContext('2d');
     ctx.clearRect(0, 0, arcCanvas.width, arcCanvas.height);
     ctx.beginPath();
     ctx.lineWidth = 7;
