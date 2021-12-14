@@ -46,6 +46,13 @@ body {
   height: 100%;
   width: 0%;
   background-color: var(--theme-color);
+  transition: all 0.2s ease;
+}
+.playercontrols__songtitle {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 400px;
 }
 .playercontrols__musiccontrols {
   font-size: large;

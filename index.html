@@ -19,19 +19,21 @@
 </head>
 
 <body id="body">
-    <h1 id="title">Geet Music Player</h1>
+    <h1 id="app-name">Geet Music Player</h1>
     
     <div class="playercontrols">
+        <div><h2 id="title" class="playercontrols__songtitle marquee">Select a song to play</h2></div>
         <div class="playercontrols__progressbar">
             <div class="playercontrols__progressbar__progress"></div>
         </div>
+        <audio src="" id="audio"></audio>
         <div class="playercontrols__musiccontrols">
-            <i class="control-button fa-solid fa-backward-fast"></i>
+            <i id="prev" class="control-button fa-solid fa-backward-fast"></i>
             <span id="play-btn" class="play-btn">
                 <i class="control-button fa-solid fa-play"></i>
                 <!-- <i class="control-button fa-solid fa-pause"></i> -->
             </span>
-            <i class="control-button fa-solid fa-forward-fast"></i>
+            <i id="next" class="control-button fa-solid fa-forward-fast"></i>
             
         </div>
     </div>
