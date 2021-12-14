@@ -1,27 +1,17 @@
+import "./browsefiles.js";
+import { getSongs } from "./browsefiles.js";
+
+let songsList = getSongs();
 let G__music = {
   isplaying: false,
   progresspercent: 0,
   volume: 0.5,
   isloaded: false,
-  currentplayingindex: 1,
+  currentplayingindex: 0,
 };
-let songsList = [
-  {
-    name: "Koi Shor - Shirley Setia 320Kbps",
-    url: "./test/Koi Shor - Shirley Setia 320Kbps.mp3",
-  },
-  {
-    name: "KYA PHOOL CHADHAU MAIN PRABHU KE CHARANO MAIN __ H",
-    url: "test/KYA PHOOL CHADHAU MAIN PRABHU KE CHARANO MAIN __ H.mp3",
-  },
-  {
-    name: "JKB",
-    url: "./test/JKB.mp3",
-  },
-];
 let audio = document.querySelector("#audio");
 
-let songfunctions = {
+export let songfunctions = {
   loadSong: () => {
     let song = songsList[G__music.currentplayingindex];
     $("#title").text(song.name);
@@ -51,17 +41,34 @@ let songfunctions = {
       G__music.currentplayingindex =
         (G__music.currentplayingindex + 1) % songsList.length;
     else G__music.currentplayingindex = idx;
-    console.log(G__music.currentplayingindex);
     songfunctions.loadSong();
-    songfunctions.playSong();
+
+    // Reset the bars
+    G__music.progresspercent = 0;
+    $(".playercontrols__progressbar__progress").width("0%");
+
+    if (G__music.isplaying === true) songfunctions.playSong();
+  },
+};
+
+let updateFunctions = {
+  updateProgress: (e) => {
+    if (G__music.isloaded == false) return;
+    let currSongDuration = audio.duration;
+    const { currentTime } = e.srcElement; // extracting info from e
+    let progressPercent = (currentTime / currSongDuration) * 100;
+    $(".playercontrols__progressbar__progress").width(progressPercent + "%");
+  },
+
+  setProgress: () => {
+    audio.currentTime =
+      audio.duration * (G__music.progresspercent / 100).toFixed(2);
   },
 };
 
 audio.volume = G__music.volume;
-audio.addEventListener("timeupdate", updateProgress);
+audio.addEventListener("timeupdate", updateFunctions.updateProgress);
 audio.addEventListener("ended", () => songfunctions.changeSong("next"));
-
-songfunctions.loadSong(G__music.currentplayingindex);
 
 $("#play-btn").on("click", () => {
   $("#play-btn").children("i").toggleClass("fa-play");
@@ -78,21 +85,8 @@ $(".playercontrols__progressbar").on("click", (e) => {
   let progresswidth = $(".playercontrols__progressbar").width();
   G__music.progresspercent =
     (1 - (progresswidth - e.offsetX) / progresswidth) * 100;
-  setProgress();
+  updateFunctions.setProgress();
 });
 
 $("#next").on("click", () => songfunctions.changeSong("next"));
 $("#prev").on("click", () => songfunctions.changeSong("prev"));
-
-function updateProgress(e) {
-  if (G__music.isloaded == false) return;
-  let currSongDuration = audio.duration;
-  const { currentTime } = e.srcElement; // extracting info from e
-  let progressPercent = (currentTime / currSongDuration) * 100;
-  $(".playercontrols__progressbar__progress").width(progressPercent + "%");
-}
-
-function setProgress() {
-  audio.currentTime =
-    audio.duration * (G__music.progresspercent / 100).toFixed(2);
-}

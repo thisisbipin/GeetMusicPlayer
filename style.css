@@ -29,6 +29,17 @@ body {
   -o-background-size: cover;
   background-size: cover;
 }
+
+.particle-background {
+  left: 0px;
+  top: 0px;
+  position: absolute;
+  /* height: 100%; */
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  /* background-color: rgba(102, 51, 153, 0.863); */
+}
 .playercontrols {
   display: flex;
   flex-direction: column;
@@ -86,42 +97,58 @@ body {
   }
 }
 
-#settings-icon {
-  cursor: pointer;
-}
-#settings {
+.sidebar {
   position: absolute;
-  height: 400px;
-  width: 300px;
-  background-color: rgba(255, 255, 255, 0.856);
-  z-index: 7;
-}
-#settings li {
-  font-size: 20px;
-  padding: 2px;
-  list-style: none;
-}
-#settings span {
-  font-size: 20px;
-  position: inherit;
-  left: calc(50% - 40px);
-  align-self: center;
+  left: 0;
+  top: 0;
+  background-color: rgba(216, 191, 216, 0.445);
+  height: 100%;
+  width: 30%;
+  transition: all 0.3s ease;
 
-  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.hide {
+  transform: translate(-100%);
+}
+input[type="file"] {
+  display: none;
+}
+.sidebar__browse__fileupload {
+  border: 1px solid rgb(255, 249, 249);
   background-color: #fe8da90f;
   display: inline-block;
-  padding: 12px 12px;
+  padding: 6px 12px;
+  margin: 12px;
+  text-align: center;
   cursor: pointer;
+  color: white;
   transition: 0.1s ease all;
   z-index: 2;
 }
 
-#settings span:hover {
-  color: white;
-  background-color: rgb(129, 129, 129);
+.sidebar__browse__fileupload:hover {
+  background-color: #fe8da9cc;
 }
-.bgchanger {
+.sidebar img {
+  margin: 20px;
+  width: 50%;
+}
+.sidebar__divideline {
+  width: 90%;
+  height: 2px;
+  background-color: white;
+}
+.sidebar__songslist__songname-title {
+  margin: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 300px;
   cursor: pointer;
-  font-size: 30px;
-  color: rgb(59, 59, 59);
+}
+.sidebar__songslist__songname-title:hover {
+  color: var(--theme-color);
 }
