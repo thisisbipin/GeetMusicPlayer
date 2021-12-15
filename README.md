@@ -37,7 +37,8 @@ This is a simple Web App for visualizing your audio clips. You can just lauch th
   ![CSS](https://img.shields.io/badge/-CSS-333333?style=flat&logo=CSS3&logoColor=1572B6)
   ![JAVASCRIPT](https://img.shields.io/badge/-JS-333333?style=flat&logo=javascript)
 - 🧾&nbsp; Modules </br>
-  [WaveJs](https://github.com/foobar404/Wave.js/)
+  [Wave.Js](https://github.com/foobar404/Wave.js/)
+  [Particle.JS](https://github.com/foobar404/Wave.js/)
 
 <p align="right">(<a href="#top">⬆️</a>)</p>
 

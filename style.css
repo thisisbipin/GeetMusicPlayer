@@ -32,8 +32,27 @@ body {
   -o-background-size: cover;
   background-size: cover;
   transition: all 0.2s ease;
+  overflow: hidden;
 }
-
+.issupported{
+  display: none;
+}
+@media screen and (max-width: 1000px){
+  .issupported{
+    position: absolute;
+    background-color: rebeccapurple;
+    width: 140%;
+    height: 130%;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .issupported h1{
+    width: 50%;
+  }
+}
 /* width */
 ::-webkit-scrollbar {
   width: 15px;
@@ -150,7 +169,7 @@ body {
   position: absolute;
   left: 0;
   top: 0;
-  background-color: rgba(255, 190, 255, 0.582);
+  background-color: rgba(179, 149, 182, 0.582);
   height: 100%;
   width: 30%;
   transition: all 0.3s ease;
@@ -253,6 +272,31 @@ input[type="file"] {
 .info-container{
   position: absolute;
   height: 90%;
-  width: 300px;
-  background-color: #292929;
+  min-width: 350px;
+  width: 50%;
+  max-width: 900px;
+  max-height: 800px;
+  background-color: #292929d8;
+  font-size: large;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: auto;
+  color: white;
+}
+.info-container-shortcuts{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.info-container span{
+  background-color: #e6e6e63a;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 10px;
+}
+.yellow-info{
+  max-width: 90%;
+  color: yellow;
+  text-align: center;
 }
