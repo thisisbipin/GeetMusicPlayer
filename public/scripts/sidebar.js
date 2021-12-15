@@ -1,5 +1,7 @@
+import { handleToggleDull, updateImage } from "./background.js";
 import { getSongs } from "./browsefiles.js";
 import { songfunctions } from "./musiccontrols.js";
+import { loadParticles } from "./particleEffects.js";
 $("#settings-icon").on("click", () => {
   $("#sidebar").toggleClass("hide");
 });
@@ -18,3 +20,15 @@ export function updateSonglist() {
     handleofUL.appendChild(li);
   });
 }
+
+$("#prev-wallpaper").on("click", () => updateImage(-1));
+$("#next-wallpaper").on("click", () => updateImage(1));
+
+loadParticles();
+$("#particle-checkbox").change(function () {
+  if (this.checked) {
+    loadParticles();
+  } else loadParticles(false);
+});
+
+$("#background-dull-checkbox").change(() => handleToggleDull());

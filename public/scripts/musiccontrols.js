@@ -2,15 +2,22 @@ import "./browsefiles.js";
 import { getSongs } from "./browsefiles.js";
 
 let songsList = getSongs();
-let G__music = {
+export let G__music = {
   isplaying: false,
   progresspercent: 0,
   volume: 0.5,
   isloaded: false,
   currentplayingindex: 0,
+  isshuffleon: false,
 };
 let audio = document.querySelector("#audio");
-
+export let volumeFunctions = {
+  updateVolume: (delta) => {
+    G__music.volume += 0.1 * delta;
+    G__music.volume = Math.min(1, Math.max(0, G__music.volume));
+    audio.volume = G__music.volume;
+  },
+};
 export let songfunctions = {
   loadSong: () => {
     let song = songsList[G__music.currentplayingindex];
@@ -22,7 +29,7 @@ export let songfunctions = {
   },
 
   playSong: () => {
-    audio.play();
+    audio.play().catch(() => alert("Please load the song to play"));
     G__music.isplaying = true;
   },
 
@@ -41,9 +48,17 @@ export let songfunctions = {
       G__music.currentplayingindex =
         (G__music.currentplayingindex + 1) % songsList.length;
     else G__music.currentplayingindex = idx;
+
+    if (G__music.isshuffleon == true) {
+      let max = songsList.length - 1,
+        min = 0;
+      G__music.currentplayingindex = parseInt(
+        Math.floor(Math.random() * (max - min + 1)) + min
+      );
+    }
     songfunctions.loadSong();
 
-    // Reset the bars
+    // Reset the progress bar
     G__music.progresspercent = 0;
     $(".playercontrols__progressbar__progress").width("0%");
 
@@ -81,7 +96,12 @@ $("#play-btn").on("click", () => {
   }
 });
 
+$("#shuffle-button").on("click", () => {
+  G__music.isshuffleon = !G__music.isshuffleon;
+  $("#shuffle-button").toggleClass("shuffle-on");
+});
 $(".playercontrols__progressbar").on("click", (e) => {
+  if (G__music.isplaying === false) return;
   let progresswidth = $(".playercontrols__progressbar").width();
   G__music.progresspercent =
     (1 - (progresswidth - e.offsetX) / progresswidth) * 100;
