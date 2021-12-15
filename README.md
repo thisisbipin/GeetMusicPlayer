@@ -63,13 +63,16 @@ If you want to get a local copy of this app.
    ```sh
    cd GeetMusicPlayer
    ```
-3. Either double click the `index.html` file or
+3. Run the server file
 
    ```sh
+   # For serving the localhost 
+   python server.py  # for Windows
+   python3 server.py   # for Linux and Mac
+   
+   # For serving and opening the file in the browser provided (by default firefox)
    python server.py --open=firefox  # for Windows
    python3 server.py --open=firefox  # for Linux and Mac
-
-   # And pass the cli name of your browser in --open argument
    ```
 
 <p align="right">(<a href="#top">⬆️</a>)</p>
