@@ -1,18 +1,5 @@
 let G__browse = {
-  songsList: [
-    {
-      name: "Koi Shor - Shirley Setia 320Kbps",
-      url: "./test/Koi Shor - Shirley Setia 320Kbps.mp3",
-    },
-    {
-      name: "KYA PHOOL CHADHAU MAIN PRABHU KE CHARANO MAIN __ H",
-      url: "test/KYA PHOOL CHADHAU MAIN PRABHU KE CHARANO MAIN __ H.mp3",
-    },
-    {
-      name: "JKB",
-      url: "./test/JKB.mp3",
-    },
-  ],
+  songsList: [],
 };
 export function handleFileSelect() {
   console.log("I trigerred");
