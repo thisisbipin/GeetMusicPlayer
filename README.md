@@ -1,34 +1,17 @@
 <div id="top"></div>
-<!--
-*** Thanks for checking out the Best-README-Template. If you have a suggestion
-*** that would make this better, please fork the repo and create a pull request
-*** or simply open an issue with the tag "enhancement".
-*** Don't forget to give the project a star!
-*** Thanks again! Now go create something AMAZING! :D
--->
-
-
-
-<!-- PROJECT SHIELDS -->
-<!--
-*** I'm using markdown "reference style" links for readability.
-*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
 
 
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
   <a href="https://github.comthisisbipin/GeetMusicPlayer">
-    <img src="https://github.com/thisisbipin/GeetMusicPlayer/blob/master/public/src/music-logo.jpg" alt="Logo" width="200" height="200">
+    <img src="https://raw.githubusercontent.com/thisisbipin/GeetMusicPlayer/master/public/assets/music-logo.jpg" alt="Logo" width="200" height="200">
   </a>
 
 <h3 align="center"> गीत Music Player</h3>
+  v2.0
   <p align="center">
-    A simple music player and audio visualizer
+    The 2nd iteration of a simple music player and audio visualizer. 
     <br /><br />
     <a href="https://github.com/thisisbipin/GeetMusicPlayer"><strong>Explore the docs »</strong></a>
     <br />
@@ -43,9 +26,9 @@
 
 <!-- ABOUT THE PROJECT -->
 ## 📝About The Project
-![Screenshot](https://user-images.githubusercontent.com/55138889/136654146-f15f1e3a-cdeb-47c5-82cc-55b3b829d8e7.jpg)
+![Screenshot](https://raw.githubusercontent.com/thisisbipin/GeetMusicPlayer/master/public/assets/info/screenshot.jpg)
 <br />
-This is a simple website app for visualizing your audio clips. You can just lauch the site play the audio. It is made using simple Vanilla JS and HTML. Do star⭐ the repo if you like it 😊.
+This is a simple Web App for visualizing your audio clips. You can just lauch the site play the audio. It is made using simple Vanilla JS and HTML. Do star⭐ the repo if you like it 😊.
 
 <p align="right">(<a href="#top">⬆️</a>)</p>
 
@@ -70,7 +53,7 @@ This is a simple website app for visualizing your audio clips. You can just lauc
 You can just visit the [गीत Music Player](https://thisisbipin.github.io/GeetMusicPlayer/) page for using this app.
 ### Prerequisites
 
-There is no such complicated prerequisites for using this app except for `using modern browsers`.
+There is no such complicated prerequisites for using this app except for `using modern browsers`. But if you are using it locally you may need `python3`.
 
 ### ⚙Installation
 If you want to get a local copy of this app.
@@ -84,58 +67,11 @@ If you want to get a local copy of this app.
    ```
 3. Either double click the `index.html` file or 
    ```sh
-   firefox index.html # or use the command name for your browser
+   python server.py # for Windows
+   python3 server.py # for Linux and Mac
    ```
 
 <p align="right">(<a href="#top">⬆️</a>)</p>
-
-
-
-<!-- USAGE EXAMPLES -->
-## Usage
-<div id="docs"></div>
-You can edit some parts of the player by yourself <br /><br />
-1. Like changing the background<br />
-   Open the file `script.js` and search for the following lines
-   
-   ```js
-    
-    let imageloc = [
-    '<SOME URL HERE>',
-    // For adding wallpapers add the Photo URLs below this line
-
-    ];
-
-    let number = 1;     //provide custom number for wallpaper
-    let number = Math.floor(Math.floor(Math.random() * (imageloc.length + 1)));  // comment out this line if you do not want random images from the list
-    let body = document.getElementById("body");
-   ```
-   and Paste your Photo URL in the space provided in quotes. <br />
-   For eg. if your URL is `myphotos/example.jpg` the you need to add the line like this `'myphotos/example.jpg'`
-   <br /><br />
-2. If you want to change the visualisation of the audio you can search for the lines<br />
-   
-   ```js
-   
-    var wave = new Wave();
-
-    wave.fromElement("audio", "audio_visual", {
-        stroke: 2,
-        type: "bars",
-        colors: [/*  some colors here */]
-    });
-
-    wave.fromElement("audio", "audio_visual-img", {
-        stroke: 2,
-        type: "web",
-        colors: [/*  some colors here */]
-    });
-   ```
-   and can change the parameters according to [this](https://foobar404.github.io/Wave.js/#/docs) doc.
-
-<p align="right">(<a href="#top">⬆️</a>)</p>
-
-
 
 <!-- CONTRIBUTING -->
 ## 🤝Contributing
@@ -168,8 +104,8 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Twitter - [@thisisbipin](https://twitter.com/thisisbipin)
-LinkedIn - [@bipinmjadav](https://www.linkedin.com/in/bipinmjadav/) 
+Twitter - [@thisisbipin](https://twitter.com/thisisbipin) <br>
+LinkedIn - [@bipinmjadav](https://www.linkedin.com/in/bipinmjadav/) <br>
 Project Link: [https://github.com/thisisbipin/GeetMusicPlayer/](https://github.com/thisisbipin/GeetMusicPlayer/)
 
 <p align="right">(<a href="#top">⬆️</a>)</p>
