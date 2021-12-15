@@ -1,6 +1,5 @@
 <div id="top"></div>
 
-
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
@@ -21,42 +20,41 @@
   </p>
 </div>
 
-
-
-
 <!-- ABOUT THE PROJECT -->
+
 ## 📝About The Project
+
 ![Screenshot](https://raw.githubusercontent.com/thisisbipin/GeetMusicPlayer/master/public/assets/info/screenshot.jpg)
 <br />
 This is a simple Web App for visualizing your audio clips. You can just lauch the site play the audio. It is made using simple Vanilla JS and HTML. Do star⭐ the repo if you like it 😊.
 
 <p align="right">(<a href="#top">⬆️</a>)</p>
 
-
-
 ### 🛠Built With
 
-* 🌐 &nbsp; Web </br>
+- 🌐 &nbsp; Web </br>
   ![HTML5](https://img.shields.io/badge/-HTML5-333333?style=flat&logo=HTML5)
   ![CSS](https://img.shields.io/badge/-CSS-333333?style=flat&logo=CSS3&logoColor=1572B6)
   ![JAVASCRIPT](https://img.shields.io/badge/-JS-333333?style=flat&logo=javascript)
-* 🧾&nbsp; Modules </br>
+- 🧾&nbsp; Modules </br>
   [WaveJs](https://github.com/foobar404/Wave.js/)
 
 <p align="right">(<a href="#top">⬆️</a>)</p>
 
-
-
 <!-- GETTING STARTED -->
+
 ## Getting Started
 
 You can just visit the [गीत Music Player](https://thisisbipin.github.io/GeetMusicPlayer/) page for using this app.
+
 ### Prerequisites
 
 There is no such complicated prerequisites for using this app except for `using modern browsers`. But if you are using it locally you may need `python3`.
 
 ### ⚙Installation
+
 If you want to get a local copy of this app.
+
 1. Clone the repo
    ```sh
    git clone https://github.com/thisisbipin/GeetMusicPlayer.git
@@ -65,15 +63,19 @@ If you want to get a local copy of this app.
    ```sh
    cd GeetMusicPlayer
    ```
-3. Either double click the `index.html` file or 
+3. Either double click the `index.html` file or
+
    ```sh
-   python server.py # for Windows
-   python3 server.py # for Linux and Mac
+   python server.py --open=firefox  # for Windows
+   python3 server.py --open=firefox  # for Linux and Mac
+
+   # And pass the cli name of your browser in --open argument
    ```
 
 <p align="right">(<a href="#top">⬆️</a>)</p>
 
 <!-- CONTRIBUTING -->
+
 ## 🤝Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
@@ -87,21 +89,18 @@ Don't forget to give the project a star! Thanks again!
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-
 <p align="right">(<a href="#top">⬆️</a>)</p>
 
-
-
 <!-- LICENSE -->
+
 ## License
 
 Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <p align="right">(<a href="#top">⬆️</a>)</p>
 
-
-
 <!-- CONTACT -->
+
 ## Contact
 
 Twitter - [@thisisbipin](https://twitter.com/thisisbipin) <br>
@@ -110,13 +109,12 @@ Project Link: [https://github.com/thisisbipin/GeetMusicPlayer/](https://github.c
 
 <p align="right">(<a href="#top">⬆️</a>)</p>
 
-
-
 <!-- ACKNOWLEDGMENTS -->
+
 ## Acknowledgments
 
-* Thanks [foobar404](https://github.com/foobar404/) ! for making the wonderful [Wave.js](https://github.com/foobar404/Wave.js/) module.
-* Thanks Sister😛 for giving me the idea of this project.
-* Thank you all🤗 for trying out this app.
+- Thanks [foobar404](https://github.com/foobar404/) ! for making the wonderful [Wave.js](https://github.com/foobar404/Wave.js/) module.
+- Thanks Sister😛 for giving me the idea of this project.
+- Thank you all🤗 for trying out this app.
 
 <p align="right">(<a href="#top">⬆️</a>)</p>
