@@ -5,6 +5,9 @@ import { updateSonglist } from "./public/scripts/sidebar.js";
 // import "./public/assets/scripts/background.js";
 import { updateImage } from "./public/scripts/background.js";
 import "./public/scripts/keyboardcontrols.js";
+import "./public/scripts/visualizations.js";
+
+
 // Delete this line on release - kyuki test ke liye hai bas
 updateSonglist();
 
@@ -18,4 +21,8 @@ $("#settings-icon").on("click", () => {
   $("#settings-icon").toggleClass("settings-icon-rotate");
 });
 
+$(".info-container").hide();
+$("#info-icon").on("click", () => {
+  $(".info-container").toggle();
+});
 updateImage(0);

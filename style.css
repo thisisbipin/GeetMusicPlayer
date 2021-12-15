@@ -150,7 +150,7 @@ body {
   position: absolute;
   left: 0;
   top: 0;
-  background-color: rgba(216, 191, 216, 0.445);
+  background-color: rgba(255, 190, 255, 0.582);
   height: 100%;
   width: 30%;
   transition: all 0.3s ease;
@@ -160,6 +160,7 @@ body {
   align-items: center;
   overflow-y: scroll;
   overflow-x: hidden;
+  z-index: 2;
 }
 .hide {
   transform: translate(-100%);
@@ -191,6 +192,7 @@ input[type="file"] {
   width: 90%;
   height: 2px;
   background-color: white;
+  border: 1px solid white;
 }
 .sidebar__songslist__songname-title {
   margin: 10px;
@@ -228,6 +230,16 @@ input[type="file"] {
   background-color: rgba(255, 255, 255, 0.288);
 }
 
+.audio-canvas {
+  position: absolute;
+  padding: 3px;
+  padding-left: 13px;
+  border-bottom: 3px solid white;
+  left: 20px;
+  bottom: 20px;
+  width: 25%;
+  height: 175px;
+}
 #info-icon {
   padding: 10px;
   margin-left: 10px;
@@ -237,4 +249,10 @@ input[type="file"] {
 }
 #info-icon:hover {
   background-color: rgba(255, 255, 255, 0.178);
+}
+.info-container{
+  position: absolute;
+  height: 90%;
+  width: 300px;
+  background-color: #292929;
 }

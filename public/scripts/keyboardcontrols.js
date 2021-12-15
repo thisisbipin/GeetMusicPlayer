@@ -8,7 +8,7 @@ document.addEventListener("keydown", (event) => {
   } else if (event.key == "ArrowUp" || event.key == "ArrowDown") {
     let sign = event.key == "ArrowUp" ? 1 : -1;
     volumeFunctions.updateVolume(sign);
-  } else if (event.key == "/") {
+  } else if (event.key == ".") {
     $("#settings-icon").click();
   }
 });
