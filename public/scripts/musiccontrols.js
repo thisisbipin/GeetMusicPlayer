@@ -14,9 +14,28 @@ let audio = document.querySelector("#audio");
 export let volumeFunctions = {
   updateVolume: (delta) => {
     G__music.volume += 0.1 * delta;
-    G__music.volume = Math.min(1, Math.max(0, G__music.volume));
+    G__music.volume =
+      Math.round(Math.min(1, Math.max(0, G__music.volume)) * 10) / 10;
     audio.volume = G__music.volume;
+    // if (G__music.volume === 0.0) volumeFunctions.muteVolume();
+    // else if (G__music.volume <= 0.7) volumeFunctions.midVolume();
+    // else volumeFunctions.maxVolume();
   },
+  // muteVolume: () => {
+  //   $("#mute").removeClass("fa-volume-up");
+  //   $("#mute").removeClass("fa-volume-down");
+  //   $("#mute").addClass("fa-volume-mute");
+  // },
+  // midVolume: () => {
+  //   $("#mute").removeClass("fa-volume-mute");
+  //   $("#mute").removeClass("fa-volume-up");
+  //   $("#mute").addClass("fa-volume-down");
+  // },
+  // maxVolume: () => {
+  //   $("#mute").removeClass("fa-volume-mute");
+  //   $("#mute").removeClass("fa-volume-down");
+  //   $("#mute").addClass("fa-volume-up");
+  // },
 };
 export let songfunctions = {
   loadSong: () => {
