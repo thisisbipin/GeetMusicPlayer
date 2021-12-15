@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <!-- Modules -->
-    <!-- <script src="https://cdn.jsdelivr.net/gh/foobar404/wave.js/dist/bundle.iife.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/gh/foobar404/wave.js/dist/bundle.iife.js"></script>
     <script src="./public/scripts/jquery-3.6.0.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
@@ -19,6 +19,9 @@
 </head>
 
 <body id="body">
+    <div class="issupported">
+        <h1>Mobile Devices are not supported❌, Please consider using a Desktop or Tablet. </h1>
+    </div>
     <h1 id="app-name">Geet Music Player</h1> 
     <i id="settings-icon" class="fas fa-cog settings-icon-rotate"></i>
     <div class="background-dull"></div>
@@ -34,22 +37,50 @@
             <i id="prev" class="control-button fa-solid fa-backward-fast"></i>
             <span id="play-btn" class="play-btn"><i class="control-button fa-solid fa-play"></i></span>
             <i id="next" class="control-button fa-solid fa-forward-fast"></i>
-            <i class="control-button fas fa-volume-up"></i>
+            <i id="mute" class="control-button fas fa-volume-up"></i>
         </div>
     </div>
     
+    <canvas class="audio-canvas" id="bar-visualizer"></canvas>
+    <div class="info-container"> 
+        <h2>How to use?</h2>
+        <hr class="sidebar__divideline">
+        <ul>
+            <li>Press the settings button to open sidebar</li>
+            <li>Click on Add Songs and Select the songs to play</li>
 
-    <div id="sidebar" class="sidebar">
+        </ul>
+        <span class="yellow-info">This App is <b>serverless</b> i.e. the Song you select do not get uploded to any server, instead it is still there in the browser as
+        a blob file, which <u> gets deleted</u> as soon as you refresh the window.</span>
+        <hr class="sidebar__divideline">
+        <h2>KeyBoard Shortcuts</h2>
+        <hr class="sidebar__divideline">
+        <ul>
+            <li class="info-container-shortcuts"><span>Arrow Up/Down</span> Volume Controls</li>
+            <li class="info-container-shortcuts"><span>Space</span> Play/Pause</li>
+            <li class="info-container-shortcuts"><span>.</span> Toggle Sidebar</li>
+            <li class="info-container-shortcuts"><span>h</span> Toggle Help Window</li>
+        </ul>
+        <hr class="sidebar__divideline">
+        <ul>
+            <li>If you want a local copy then visit <a href="https://github.com/thisisbipin/GeetMusicPlayer">Geet Music Player Github Repo</a>
+            </li>
+            <li>📝Sourced under MIT License</li>
+        </ul>
+
+    </div>
+
+    <div id="sidebar" class="sidebar hide">
         <img src="./public/assets/music-logo.jpg" id='music-icon' class="sidebar__image" alt="music-cover">
         v2.0
         <div class="sidebar__browse"> 
-    <label class="sidebar__browse__fileupload">
-        <input type="file" id="browse-file" multiple />
-        Add Songs
-    </label>
-    </div>
-    <hr class="sidebar__divideline">
-    <div class="sidebar__songlist">
+            <label class="sidebar__browse__fileupload">
+                <input type="file" id="browse-file" multiple />
+                Add Songs
+            </label>
+        </div>
+        <hr class="sidebar__divideline">
+        <div class="sidebar__songlist">
         <ul id="sidebar__songlist__ul"></ul>
     </div>
     <hr class="sidebar__divideline">

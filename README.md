@@ -37,7 +37,8 @@ This is a simple Web App for visualizing your audio clips. You can just lauch th
   ![CSS](https://img.shields.io/badge/-CSS-333333?style=flat&logo=CSS3&logoColor=1572B6)
   ![JAVASCRIPT](https://img.shields.io/badge/-JS-333333?style=flat&logo=javascript)
 - 🧾&nbsp; Modules </br>
-  [WaveJs](https://github.com/foobar404/Wave.js/)
+  [Wave.Js](https://github.com/foobar404/Wave.js/)
+  [Particle.JS](https://github.com/VincentGarreau/particles.js/)
 
 <p align="right">(<a href="#top">⬆️</a>)</p>
 
@@ -117,6 +118,7 @@ Project Link: [https://github.com/thisisbipin/GeetMusicPlayer/](https://github.c
 ## Acknowledgments
 
 - Thanks [foobar404](https://github.com/foobar404/) ! for making the wonderful [Wave.js](https://github.com/foobar404/Wave.js/) module.
+- Thanks [VincentGarreau](https://github.com/VincentGarreau/) ! for making the wonderful [Particle.js](https://github.com/VincentGarreau/particles.js/) module.
 - Thanks Sister😛 for giving me the idea of this project.
 - Thank you all🤗 for trying out this app.
 
