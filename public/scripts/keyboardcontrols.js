@@ -1,20 +1,33 @@
 import { volumeFunctions } from "./musiccontrols.js";
 // press space to play
 document.addEventListener("keydown", (event) => {
-  if (event.key == " ") {
-    if (document.activeElement.id == "play") return;
-    $("#play-btn").click();
-    return;
-  } else if (event.key == "ArrowUp" || event.key == "ArrowDown") {
-    let sign = event.key == "ArrowUp" ? 1 : -1;
-    volumeFunctions.updateVolume(sign);
-  } else if (event.key == ".") {
-    $("#settings-icon").click();
+  switch (event.key) {
+    case " ":
+      if (document.activeElement.id == "play") return;
+      $("#play-btn").click();
+      return;
+
+    case "ArrowUp":
+    case "ArrowDown":
+      let sign = event.key == "ArrowUp" ? 1 : -1;
+      volumeFunctions.updateVolume(sign);
+      break;
+
+    case ".":
+      $("#settings-icon").click();
+      break;
+
+    case "h":
+      $("#info-icon").click();
+      break;
+
+    default:
+      return;
   }
 });
 
 // mouse wheel to control volume
-$("#app-name").on("wheel", (e) => {
+$("#volume-btn").on("wheel", (e) => {
   let sign = e.originalEvent.wheelDelta < 0 ? -1 : 1;
   volumeFunctions.updateVolume(sign);
 });

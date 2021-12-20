@@ -2,7 +2,6 @@ let G__browse = {
   songsList: [],
 };
 export function handleFileSelect() {
-  console.log("I trigerred");
   let supportedEXT = [".mp3", ".wav"];
   let want_to_alert = false;
 
@@ -27,8 +26,6 @@ export function handleFileSelect() {
     alert(
       "You Selected some non-song files! That was not added to the list. Please select valid song files only"
     );
-
-  console.log(G__browse.songsList);
 }
 
 export function getSongs() {

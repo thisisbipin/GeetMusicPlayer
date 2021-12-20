@@ -26,6 +26,7 @@
     <i id="settings-icon" class="fas fa-cog settings-icon-rotate"></i>
     <div class="background-dull"></div>
     <div id="particles-js" class="particle-background"></div>
+    <div class="volume-bar fade"><div class="volume-bar-progress"></div></div>
     <div class="playercontrols">
         <div><h2 id="title" class="playercontrols__songtitle marquee">Select a song to play</h2></div>
         <div class="playercontrols__progressbar">
@@ -37,7 +38,7 @@
             <i id="prev" class="control-button fa-solid fa-backward-fast"></i>
             <span id="play-btn" class="play-btn"><i class="control-button fa-solid fa-play"></i></span>
             <i id="next" class="control-button fa-solid fa-forward-fast"></i>
-            <i id="mute" class="control-button fas fa-volume-up"></i>
+            <i id="volume-btn" class="control-button fas fa-volume-up"></i>
         </div>
     </div>
     
@@ -87,11 +88,13 @@
     <div class="sidebar__settings">
         <h2>Settings</h2>
         <ul>
-            <li>Background <i id="prev-wallpaper" class="fa-solid fa-angle-left"></i>
-                <i id="next-wallpaper" class="fa-solid fa-angle-right"></i>
+            <li class="sidebar__settings_list-item">
+                Background 
+                <i><i id="prev-wallpaper" class="sidebar__settings__background-toggle_wide fa-solid fa-angle-left"></i>
+                <i id="next-wallpaper" class="fa-solid fa-angle-right"></i></i>
             </li>
-            <li> Particle Effects <input type="checkbox" name="" id="particle-checkbox" checked></li>
-            <li> Dull background <input type="checkbox" name="" id="background-dull-checkbox" checked></li>
+            <li class="sidebar__settings_list-item"> Particle Effects <i  id="particle-checkbox" class="checkbox fa-solid fa-square-check"></i></li>
+            <li class="sidebar__settings_list-item"> Dull background <i id="background-dull-checkbox" class="checkbox fa-solid fa-square-check"></i></li>
         </ul>
     </div>
     
