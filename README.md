@@ -10,7 +10,7 @@
 <h3 align="center"> गीत Music Player</h3>
   v2.0
   <p align="center">
-    The 2nd iteration of a simple music player and audio visualizer. 
+    The 2nd iteration of a simple music player and audio visualizer. (This app do not provides any online music(freely available) yet,hence you need to select your own songs to play).
     <br /><br />
     <strong>
     <a href="https://thisisbipin.github.io/GeetMusicPlayer/">View Deployment</a>
