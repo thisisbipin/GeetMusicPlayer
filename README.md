@@ -12,11 +12,11 @@
   <p align="center">
     The 2nd iteration of a simple music player and audio visualizer. 
     <br /><br />
-    <a href="https://github.com/thisisbipin/GeetMusicPlayer"><strong>Explore the docs »</strong></a>
-    <br />
+    <strong>
     <a href="https://thisisbipin.github.io/GeetMusicPlayer/">View Deployment</a>
     ·
     <a href="https://github.com/thisisbipin/GeetMusicPlayer/issues">Request Feature</a>
+    </strong>
   </p>
 </div>
 
