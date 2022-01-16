@@ -17,26 +17,17 @@ export let volumeFunctions = {
     G__music.volume =
       Math.round(Math.min(1, Math.max(0, G__music.volume)) * 10) / 10;
     audio.volume = G__music.volume;
-    // if (G__music.volume === 0.0) volumeFunctions.muteVolume();
-    // else if (G__music.volume <= 0.7) volumeFunctions.midVolume();
-    // else volumeFunctions.maxVolume();
+
+    $(".volume-bar-progress").height(G__music.volume * 100 + "%");
   },
-  // muteVolume: () => {
-  //   $("#mute").removeClass("fa-volume-up");
-  //   $("#mute").removeClass("fa-volume-down");
-  //   $("#mute").addClass("fa-volume-mute");
-  // },
-  // midVolume: () => {
-  //   $("#mute").removeClass("fa-volume-mute");
-  //   $("#mute").removeClass("fa-volume-up");
-  //   $("#mute").addClass("fa-volume-down");
-  // },
-  // maxVolume: () => {
-  //   $("#mute").removeClass("fa-volume-mute");
-  //   $("#mute").removeClass("fa-volume-down");
-  //   $("#mute").addClass("fa-volume-up");
-  // },
+  toggleMute: () => {
+    $("#volume-btn").toggleClass("fa-volume-up");
+    $(".volume-bar-progress").toggle();
+    $("#volume-btn").toggleClass("fa-volume-mute");
+    $(audio).prop("muted", !$(audio).prop("muted"));
+  },
 };
+
 export let songfunctions = {
   loadSong: () => {
     let song = songsList[G__music.currentplayingindex];
@@ -56,7 +47,16 @@ export let songfunctions = {
     audio.pause();
     G__music.isplaying = false;
   },
+  toggleSongPlay: () => {
+    $("#play-btn").children("i").toggleClass("fa-play");
+    $("#play-btn").children("i").toggleClass("fa-pause");
 
+    if ($("#play-btn").children("i").hasClass("fa-play") === true) {
+      songfunctions.pauseSong();
+    } else {
+      songfunctions.playSong();
+    }
+  },
   changeSong: (idx) => {
     if (idx == "prev")
       G__music.currentplayingindex =
@@ -105,14 +105,7 @@ audio.addEventListener("timeupdate", updateFunctions.updateProgress);
 audio.addEventListener("ended", () => songfunctions.changeSong("next"));
 
 $("#play-btn").on("click", () => {
-  $("#play-btn").children("i").toggleClass("fa-play");
-  $("#play-btn").children("i").toggleClass("fa-pause");
-
-  if ($("#play-btn").children("i").hasClass("fa-play") === true) {
-    songfunctions.pauseSong();
-  } else {
-    songfunctions.playSong();
-  }
+  songfunctions.toggleSongPlay();
 });
 
 $("#shuffle-button").on("click", () => {
@@ -129,3 +122,12 @@ $(".playercontrols__progressbar").on("click", (e) => {
 
 $("#next").on("click", () => songfunctions.changeSong("next"));
 $("#prev").on("click", () => songfunctions.changeSong("prev"));
+
+// Volume
+$("#volume-btn").hover(
+  () => $(".volume-bar").removeClass("fade"),
+  () => $(".volume-bar").addClass("fade")
+);
+$("#volume-btn").on("click", function () {
+  volumeFunctions.toggleMute();
+});

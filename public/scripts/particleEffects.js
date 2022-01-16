@@ -1,5 +1,7 @@
-export function loadParticles(isallowed = true) {
-  if (isallowed == true)
+let isParticlesVisible = true;
+export function handleToggleParticles(isallowed = true) {
+  isParticlesVisible = !isParticlesVisible;
+  if (isParticlesVisible == true)
     particlesJS.load(
       "particles-js",
       "public/assets/particles.json",
@@ -15,4 +17,5 @@ export function loadParticles(isallowed = true) {
         console.log("callback - particles.js config loaded");
       }
     );
+  return isallowed;
 }
