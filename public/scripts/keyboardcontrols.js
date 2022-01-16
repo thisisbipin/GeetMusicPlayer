@@ -20,7 +20,9 @@ document.addEventListener("keydown", (event) => {
     case "h":
       $("#info-icon").click();
       break;
-
+    case "m":
+      $("#volume-btn").click();
+      break;
     default:
       return;
   }
@@ -28,6 +30,6 @@ document.addEventListener("keydown", (event) => {
 
 // mouse wheel to control volume
 $("#volume-btn").on("wheel", (e) => {
-  let sign = e.originalEvent.wheelDelta < 0 ? -1 : 1;
+  let sign = e.originalEvent.deltaY > 0 ? -1 : 1;
   volumeFunctions.updateVolume(sign);
 });

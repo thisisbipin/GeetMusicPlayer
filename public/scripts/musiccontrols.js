@@ -22,6 +22,7 @@ export let volumeFunctions = {
   },
   toggleMute: () => {
     $("#volume-btn").toggleClass("fa-volume-up");
+    $(".volume-bar-progress").toggle();
     $("#volume-btn").toggleClass("fa-volume-mute");
     $(audio).prop("muted", !$(audio).prop("muted"));
   },
