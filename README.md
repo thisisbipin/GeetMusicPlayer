@@ -20,6 +20,9 @@
   </p>
 </div>
 
+## 🤔TODO
+- Add beat detection
+
 <!-- ABOUT THE PROJECT -->
 
 ## 📝About The Project

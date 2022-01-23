@@ -13,6 +13,8 @@ document.addEventListener("keydown", (event) => {
       volumeFunctions.updateVolume(sign);
       break;
 
+    case "Escape":
+      $(".info-container").hide();
     case ".":
       $("#settings-icon").click();
       break;

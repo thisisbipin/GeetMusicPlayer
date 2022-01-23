@@ -1,5 +1,6 @@
 import "./browsefiles.js";
 import { getSongs } from "./browsefiles.js";
+import { handleVisualizerShake } from "./shakeAndBeatDetection.js";
 
 let songsList = getSongs();
 export let G__music = {
@@ -51,7 +52,7 @@ export let songfunctions = {
     $("#play-btn").children("i").toggleClass("fa-play");
     $("#play-btn").children("i").toggleClass("fa-pause");
 
-    $("#bar-visualizer").toggleClass("shake");
+    handleVisualizerShake();
 
     if ($("#play-btn").children("i").hasClass("fa-play") === true) {
       songfunctions.pauseSong();
