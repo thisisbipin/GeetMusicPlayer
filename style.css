@@ -6,6 +6,9 @@
   --sub-theme-color: white;
   --settings-offset: 20px;
   --background-url: url("#");
+  --vibration-amplitude: 4px;
+  --vibration-amplitude-neg: -1px;
+  --animation-duration: 1s;
 }
 * {
   box-sizing: border-box;
@@ -326,4 +329,154 @@ input[type="file"] {
   max-width: 90%;
   color: yellow;
   text-align: center;
+}
+
+@-webkit-keyframes shake {
+  0%,
+  100% {
+    -webkit-transform: translateX(0) translateY(0);
+  }
+  15%,
+  35%,
+  55%,
+  75%,
+  95% {
+    -webkit-transform: translateX(-1px);
+  }
+  25%,
+  45%,
+  65%,
+  85% {
+    -webkit-transform: translateX(1px);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    -webkit-transform: translateY(1px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    -webkit-transform: translateY(-1px);
+  }
+}
+@-moz-keyframes shake {
+  0%,
+  100% {
+    -moz-transform: translateX(0) translateY(0);
+  }
+  15%,
+  35%,
+  55%,
+  75%,
+  95% {
+    -moz-transform: translateX(-1px);
+  }
+  25%,
+  45%,
+  65%,
+  85% {
+    -moz-transform: translateX(1px);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    -moz-transform: translateY(1px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    -moz-transform: translateY(-1px);
+  }
+}
+
+@-o-keyframes shake {
+  0%,
+  100% {
+    -o-transform: translateX(0) translateY(0);
+  }
+  15%,
+  35%,
+  55%,
+  75%,
+  95% {
+    -o-transform: translateX(-1px);
+  }
+  25%,
+  45%,
+  65%,
+  85% {
+    -o-transform: translateX(1px);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    -o-transform: translateY(1px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    -o-transform: translateY(-1px);
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0) translateY(0);
+  }
+  15%,
+  35%,
+  55%,
+  75%,
+  95% {
+    transform: translateX(var(--vibration-amplitude-neg));
+  }
+  25%,
+  45%,
+  65%,
+  85% {
+    transform: translateX(var(--vibration-amplitude));
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateY(var(--vibration-amplitude));
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateY(var(--vibration-amplitude-neg));
+  }
+}
+.shake {
+  -webkit-animation-name: shake;
+  -moz-animation-name: shake;
+  -o-animation-name: shake;
+  animation-name: shake;
+  -webkit-animation-duration: var(--animation-duration);
+  -moz-animation-duration: var(--animation-duration);
+  -o-animation-duration: var(--animation-duration);
+  animation-duration: var(--animation-duration);
+  -webkit-animation-fill-mode: both;
+  -moz-animation-fill-mode: both;
+  -o-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-iteration-count: infinite;
+  -moz-animation-iteration-count: infinite;
+  -o-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-transition-timing-function: linear;
 }

@@ -51,6 +51,8 @@ export let songfunctions = {
     $("#play-btn").children("i").toggleClass("fa-play");
     $("#play-btn").children("i").toggleClass("fa-pause");
 
+    $("#bar-visualizer").toggleClass("shake");
+
     if ($("#play-btn").children("i").hasClass("fa-play") === true) {
       songfunctions.pauseSong();
     } else {
