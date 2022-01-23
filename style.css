@@ -12,8 +12,8 @@
 }
 * {
   box-sizing: border-box;
-  /* user-select: none;
-    -moz-user-select: none; */
+  user-select: none;
+  -moz-user-select: none;
 }
 
 body {
@@ -36,6 +36,19 @@ body {
   background-size: cover;
   transition: all 0.2s ease;
   overflow: hidden;
+}
+a {
+  text-decoration: none;
+  color: yellow;
+  background-color: rgba(255, 255, 255, 0.199);
+  padding: 5px 15px;
+  margin: 5px;
+  border: 1px solid rgba(255, 255, 255, 0);
+  border-radius: 15px;
+  transition: 0.2s all ease;
+}
+a:hover {
+  border: 1px solid yellow;
 }
 .issupported {
   display: none;
@@ -218,7 +231,8 @@ input[type="file"] {
   border: 1px solid rgb(255, 249, 249);
   background-color: #fe8da90f;
   display: inline-block;
-  padding: 6px 12px;
+  padding: 10px 20px;
+  border-radius: 4px;
   margin: 12px;
   text-align: center;
   cursor: pointer;
@@ -228,7 +242,7 @@ input[type="file"] {
 }
 
 .sidebar__browse__fileupload:hover {
-  background-color: #fe8da9cc;
+  background-color: rgba(255, 255, 255, 0.2);
 }
 .sidebar img {
   margin: 20px;
@@ -240,16 +254,24 @@ input[type="file"] {
   background-color: white;
   border: 1px solid white;
 }
+.sidebar__songlist {
+  width: 90%;
+}
 .sidebar__songslist__songname-title {
   margin: 10px;
   overflow: hidden;
+  padding: 6px;
+  padding-left: 12px;
+  border-radius: 12px;
   text-overflow: ellipsis;
   white-space: nowrap;
   max-width: 300px;
   cursor: pointer;
+  transition: 0.2s all ease;
 }
 .sidebar__songslist__songname-title:hover {
-  color: var(--theme-color);
+  /* color: var(--theme-color); */
+  background-color: rgba(255, 255, 255, 0.2);
 }
 .sidebar__settings {
   display: flex;
@@ -311,8 +333,14 @@ input[type="file"] {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
   overflow: auto;
   color: white;
+  padding: 20px;
+}
+th {
+  padding: 5px 50px;
+  background-color: rgba(255, 255, 255, 0.2);
 }
 .info-container-shortcuts {
   display: flex;
@@ -320,10 +348,19 @@ input[type="file"] {
   justify-content: center;
 }
 .info-container span {
-  background-color: #e6e6e63a;
   border-radius: 5px;
   padding: 5px;
   margin: 10px;
+}
+
+.license-info {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.info-container li {
+  padding: 10px;
 }
 .yellow-info {
   max-width: 90%;
