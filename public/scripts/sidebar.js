@@ -2,6 +2,10 @@ import { handleToggleDull, updateImage } from "./background.js";
 import { getSongs } from "./browsefiles.js";
 import { songfunctions } from "./musiccontrols.js";
 import { handleToggleParticles } from "./particleEffects.js";
+import {
+  handleVisualizerShake,
+  setVisualizerShake,
+} from "./shakeAndBeatDetection.js";
 let status = {
   isParticlesLoaded: true,
 };
@@ -31,3 +35,4 @@ $("#particle-checkbox").on("click", function () {
 });
 
 $("#background-dull-checkbox").on("click", () => handleToggleDull());
+$("#shake-visualizer-checkbox").on("click", (e) => setVisualizerShake(e));
