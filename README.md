@@ -15,7 +15,7 @@
     <strong>
     <a href="https://thisisbipin.github.io/GeetMusicPlayer/">View Deployment</a>
     ·
-    <a href="https://github.com/thisisbipin/GeetMusicPlayer/issues">Request Feature</a>
+    <a href="https://github.com/thisisbipin/GeetMusicPlayer/issues/new">Request Feature</a>
     </strong>
   </p>
 </div>
