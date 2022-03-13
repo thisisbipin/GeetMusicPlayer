@@ -22,6 +22,7 @@
 
 ## 🤔TODO
 - Add beat detection
+- Multi Browser Support
 
 <!-- ABOUT THE PROJECT -->
 
